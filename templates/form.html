@@ -82,6 +82,75 @@
                 </div>
             </div>
         </div>
+
+        <h1>Генерация ПЭП</h1>
+
+        <div class="card">
+            <div class="card-content">
+                <form action="/generate" method="get">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Placeholder" id="first_name" type="text" name="name" class="validate">
+                            <label for="first_name">Имя владельца</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input placeholder="Placeholder" id="first_name" type="text" name="org" class="validate">
+                            <label for="first_name">Организация</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input placeholder="Placeholder" id="first_name" type="text" name="email" class="validate">
+                            <label for="first_name">Email</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input placeholder="Placeholder" id="first_name" type="text" name="pwd" class="validate">
+                            <label for="first_name">Пароль</label>
+                        </div>
+                        <div class="col s12">
+                          <button class="btn waves-effect waves-light" type="submit" name="action">Сгенерировать
+                          </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-tabs">
+                <ul class="tabs tabs-fixed-width">
+                    <li class="tab"><a href="#gen1">Описание</a></li>
+                    <li class="tab"><a href="#gen2">Пример вызова cURL</a></li>
+                     <li class="tab"><a class="active" href="#gen3">Пример ответа</a></li>
+                </ul>
+            </div>
+            <div class="card-content grey lighten-4">
+                <div id="gen1">
+                    <b>Параметры запроса GET</b>
+                    <p>name - Имя</p>
+                    <p>org - Организация</p>
+                    <p>email - Email</p>
+                    <p>pwd - Пароль</p>
+                </div>
+                <div id="gen2">
+                    <b>Пример запроса curl</b>
+                    <pre></pre>
+                </div>
+                <div id="gen3">
+                    <b>Пример ответа</b>
+                    <pre>
+                        {
+"result": {
+"MD5": "BAD05757B718138D2E8D4F70C9204AAF",
+"SHA1": "95ADEBCBC9A017E3412F98C47D3BF6462756A4AD",
+"SerialNumber": "D2435E6AE313FF335306",
+"ValidityEnd": "Wed, 02 Oct 2024 13:28:00 GMT",
+"ValidityStart": "Wed, 02 Oct 2019 13:28:00 GMT",
+"X509": "30820267308201D0A003020102020AD2435E6AE313FF335306300D06092A864886F70D010105050030643117301506035504030C0ED09DD0B8D0BAD0BED0BBD0B0D0B931173015060355040A0C0ED0A0D0BED0BCD0B0D188D0BAD0B03123302106092A864886F70D01090116146E2E6E61676F726E797940676D61696C2E636F6D310B3009060355040613025255301E170D3139313031353130323830305A170D3234313031353130323830305A30643117301506035504030C0ED09DD0B8D0BAD0BED0BBD0B0D0B931173015060355040A0C0ED0A0D0BED0BCD0B0D188D0BAD0B03123302106092A864886F70D01090116146E2E6E61676F726E797940676D61696C2E636F6D310B300906035504061302525530819F300D06092A864886F70D010101050003818D0030818902818100B698901D586F2D6D4682C4E3CC0DC3C889248C0709A830C1F9BD3C3F467EC2E979EEA9FAE533DDC1F0175EE5CF58E31B147F4591753F54DF9AB11555A1E79C5479FD11161AAE91A8219C00624C0651DE25B6763AC7349C2C0440D571928550CB3B18054046F0D30F3363F42E72274517FE0859468FF9694AA68DA7AC6E2EC3FD0203010001A320301E300F06092A864886F72F01010A04020500300B0603551D0F040403020490300D06092A864886F70D0101050500038181002869D9494C818BFE55508A42544AD1B029508F7439DD362CFE6154D8AA3733F06EAE25D19A733BC2A4F160826C4043DBABA50C079E25DFFE809BE50B623537442CC6E05057B9C8248E0AA4E582B4FE3338CC5B84534D0C8DFF03955A97F9B018CE49535C4448CCC09CA266E6F4A8F4DA6B3B9DE6DC81D166F3ACF4FEC2D5268A",
+"cer": "MIICZzCCAdCgAwIBAgIK0kNeauMT/zNTBjANBgkqhkiG9w0BAQUFADBkMRcwFQYDVQQDDA7QndC40LrQvtC70LDQuTEXMBUGA1UECgwO0KDQvtC80LDRiNC60LAxIzAhBgkqhkiG9w0BCQEWFG4ubmFnb3JueXlAZ21haWwuY29tMQswCQYDVQQGEwJSVTAeFw0xOTEwMTUxMDI4MDBaFw0yNDEwMTUxMDI4MDBaMGQxFzAVBgNVBAMMDtCd0LjQutC+0LvQsNC5MRcwFQYDVQQKDA7QoNC+0LzQsNGI0LrQsDEjMCEGCSqGSIb3DQEJARYUbi5uYWdvcm55eUBnbWFpbC5jb20xCzAJBgNVBAYTAlJVMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC2mJAdWG8tbUaCxOPMDcPIiSSMBwmoMMH5vTw/Rn7C6XnuqfrlM93B8Bde5c9Y4xsUf0WRdT9U35qxFVWh55xUef0RFhqukaghnABiTAZR3iW2djrHNJwsBEDVcZKFUMs7GAVARvDTDzNj9C5yJ0UX/ghZRo/5aUqmjaesbi7D/QIDAQABoyAwHjAPBgkqhkiG9y8BAQoEAgUAMAsGA1UdDwQEAwIEkDANBgkqhkiG9w0BAQUFAAOBgQAoadlJTIGL/lVQikJUStGwKVCPdDndNiz+YVTYqjcz8G6uJdGaczvCpPFggmxAQ9urpQwHniXf/oCb5QtiNTdELMbgUFe5yCSOCqTlgrT+MzjMW4RTTQyN/wOVWpf5sBjOSVNcREjMwJyiZub0qPTaazud5tyB0WbzrPT+wtUmig==",
+"pfx": "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"
+},
+"status": "success"
+}
+                    </pre>
+                </div>
+            </div>
+        </div>
       </div>
 <script>
 

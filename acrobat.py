@@ -86,11 +86,21 @@ class Acrobat:
 
     def create_new_sert(self, name, email, org, password, path_root):
 
+        print('Имя для генерации: '+name)
+        print('Организация для генерации: '+org)
+        print('Email для генерации: '+email)
+        print('Пароль для генерации: '+password)
+
         path = os.path.abspath(os.path.join(path_root, 'upload', org+'.pfx'))
         path_crt = path.replace('.pfx', '.cer');
         path_crt_js = format_path_for_js(path_crt)
 
+        print("Временный файл для pfx " + path)
+        print("Временный файл для cer " + path_crt)
+
         self.jObject.CreateNewCert(name, email, org, password, path)
+
+        print("pfx создан!!!")
 
         ppklite = self.jObject.security.getHandler("Adobe.PPKLite");
         ppklite.login(password, path);
@@ -98,6 +108,7 @@ class Acrobat:
         ids = ppklite.digitalIDs;
         oCert=ids.oEndUserSignCert;
         self.jObject.security.exportToFile(oCert, path_crt_js);
+        print("cer создан!!!")
 
         with open(path, 'rb') as pfx_file:
             pfx_data = pfx_file.read()
@@ -115,10 +126,11 @@ class Acrobat:
             'ValidityEnd': oCert.privateKeyValidityEnd,
             'ValidityStart': oCert.privateKeyValidityStart,
         }
+        print("base64 сертификатов получены и записаны в ответ")
         # delete file
         os.remove(path)
         os.remove(path_crt)
-
+        print("Временные файлы удалены!")
         return cert_data
 
     def finish(self, save_to=""):

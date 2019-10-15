@@ -53,4 +53,4 @@ def download_file(path_to_file):
         return "Файл не найден " + real_path, 404
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
