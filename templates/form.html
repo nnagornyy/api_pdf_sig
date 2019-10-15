@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Миеросервис подписи документов</title>
+     <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Подписание документов</h1>
+
+        <div class="card">
+            <div class="card-content">
+                <form action="/sign" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="file-field input-field col s12">
+                            <div class="btn">
+                                <span>Файл для подписи</span>
+                                <input type="file" name="pdf">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <div class="file-field input-field col s12">
+                            <div class="btn">
+                                <span>Сертификат</span>
+                                <input type="file" name="pfx">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <div class="input-field col s12">
+                            <input placeholder="Placeholder" id="first_name" type="text" name="pwd" class="validate">
+                            <label for="first_name">Пароль сертификата</label>
+                        </div>
+                        <div class="col s12">
+                          <button class="btn waves-effect waves-light" type="submit" name="action">Подписать
+                          </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-tabs">
+                <ul class="tabs tabs-fixed-width">
+                    <li class="tab"><a href="#test4">Описание</a></li>
+                    <li class="tab"><a class="active" href="#test5">Привет вызова cURL</a></li>
+                </ul>
+            </div>
+            <div class="card-content grey lighten-4">
+                <div id="test4">
+                    <b>Запрос</b>
+                    <p>POST запрос с параметрами в теле</p>
+                    <p>pdf - файл который подписиываем</p>
+                    <p>pfx - сертификат</p>
+                    <p>pwd - пароль от сертиифииката</p>
+                    <br>
+                    <br>
+                    <b>Ответ</b>
+                    <p>Подписанный файл</p>
+
+                </div>
+                <div id="test5">
+                    <pre>
+    curl -X POST \
+    http:///sig \
+    -H 'Content-Type: application/x-www-form-urlencoded' \
+    -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+    -F pdf=@/C:/Users/bubl0id/Downloads/test_sing.pdf \
+    -F pfx=@/C:/util/sig.pfx \
+    -F pwd=123123123
+                    </pre>
+                </div>
+            </div>
+        </div>
+      </div>
+<script>
+
+
+  // Or with jQuery
+  $(document).ready(function(){
+    $('.tabs').tabs();
+  });
+
+</script>
+</body>
+</html>

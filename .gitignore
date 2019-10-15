@@ -1,0 +1,6 @@
+__pycache__/
+.idea/
+
+upload/*
+venv/
+!upload/placeholder.txt
