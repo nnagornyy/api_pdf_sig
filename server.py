@@ -52,8 +52,5 @@ def download_file(path_to_file):
     else:
         return "Файл не найден " + real_path, 404
 
-def delete_old_file:
-
-
 if __name__ == '__main__':
     app.run(debug=True)
