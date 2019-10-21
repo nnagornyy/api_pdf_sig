@@ -1,4 +1,4 @@
-import os
+import os, datetime
 from flask import Flask, render_template, request, jsonify, send_file, json
 from acrobat import Acrobat
 
@@ -10,6 +10,7 @@ def hello_world():
 
 @app.route('/sign', methods=['POST'])
 def sig():
+    clear_upload_dir();
     pdf = request.files['pdf']
     pfx = request.files['pfx']
     pwd = request.form.get('pwd')
@@ -51,6 +52,17 @@ def download_file(path_to_file):
         return send_file(real_path, as_attachment=True)
     else:
         return "Файл не найден " + real_path, 404
+
+def clear_upload_dir():
+    print('очищаем папку от старых файлов')
+    path = os.path.abspath(os.path.join('upload'))
+    now = datetime.datetime.now()
+    for r, d, f in os.walk(path):
+        for file in f:
+            file_date = datetime.datetime.fromtimestamp(os.path.getmtime(os.path.join('upload', file)))
+            delta = now - file_date
+            if (delta.seconds / 60 > 2):
+                os.remove(os.path.join(path, file))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
