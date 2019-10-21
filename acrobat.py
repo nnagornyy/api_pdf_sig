@@ -18,15 +18,15 @@ class Acrobat:
         ERRORS_BAD_CONTEXT.append(winerror.E_NOTIMPL)
 
         self.input_file_name = file_src
-        self.avDoc = win32com.client.DispatchEx('AcroExch.AVDoc')\
+        self.pdDoc = win32com.client.DispatchEx('AcroExch.PDDoc')\
 
         if not os.path.exists(file_src):
             file_src = os.path.abspath(os.path.join('example.pdf'))
 
         print("открываем pdf "+file_src)
 
-        self.avDoc.Open(file_src, file_src)
-        self.pdDoc = self.avDoc.GetPDDoc()
+        self.pdDoc.Open(file_src)
+
         self.jObject = self.pdDoc.GetJSObject()
 
     def add_sing_placeholder(self):
@@ -143,4 +143,3 @@ class Acrobat:
             print("Файл сохранен в " + save_path)
         else:
             print("Файл не сохранен, акробату не удалось сохранить файл, проверте права на запись ")
-        self.avDoc.Close(-1)
