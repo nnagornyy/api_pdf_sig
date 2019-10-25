@@ -62,14 +62,13 @@ class Acrobat:
         print("Используем файл для подписи" + pfx_path)
         print("Используем пароль сертификта "+password)
         path_pfx_js = format_path_for_js(pfx_path)
-
-        self.jObject.AddSignature(path_pfx_js, password, placeholder, "Adobe.PPKLite")
+        res = self.jObject.AddSignature(path_pfx_js, password, placeholder, "Adobe.PPKLite")
 
         if self.sing_exist():
             print("Подписали документ!")
             return True
         else:
-            print("Не удалось подписать документ")
+            print("Не удалось подписать документ , js вернул исключение: "+ res.message)
             return {'status': 'error', 'message': 'Не удалось подписать документ'}
 
 
